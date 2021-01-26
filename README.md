@@ -18,4 +18,4 @@ input TOKEN_LINE_NOTIFY
 node server.js
 ```
 
-Your app should now be running on [localhost:3000](http://localhost:3000/).
+Your app should now be running on [localhost:4444](http://localhost:4444/).
