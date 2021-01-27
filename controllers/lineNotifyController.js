@@ -4,9 +4,14 @@ require('dotenv').config()
 
 var token =  process.env.TOKEN_LINE_NOTIFY || null;
 
-const lineNotifyController = (req, res) => {
+const lineNotifyController = async (req, res) => {
   if ((token && req.body.message)) {
-    lineNotifyService(token, req.body.message, res);
+    const result = await lineNotifyService(token, req.body.message);
+    if (result.statusCode == 200) {
+      res.status(200).json(result)
+    } else {
+      res.status(400).json(result)
+    }
   } else if (!token && req.body.message) {
     res.status(400).json({
       message: 'Input token not found value.',
